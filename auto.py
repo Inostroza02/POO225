@@ -28,6 +28,7 @@ pygame.init()
 ventana = pygame.display.set_mode((1024,900))
 autito = pygame.image.load('./car.png').convert_alpha()
 fondo = pygame.image.load('./fondo.png').convert_alpha()
+caja = autito.get_rect()
 while(True):
     for event in pygame.event.get():
         if(event.type== pygame.KEYDOWN and event.key == pygame.K_d):
@@ -47,6 +48,13 @@ while(True):
     carretera.ejex -= objeto.velocidad/100
     if(carretera.ejex<-500):
         carretera.ejex = 0
+    if(carretera.ejex>=0):
+        carretera.ejex=-200
+    if(objeto.lat>600):
+        objeto.lat=600
+    if(objeto.lat<0):
+        objeto.lat=0
     ventana.blit(fondo,(carretera.ejex,carretera.ejey))
     ventana.blit(autito,(objeto.lat,objeto.lon))
+    print(caja)
     pygame.display.update() 
